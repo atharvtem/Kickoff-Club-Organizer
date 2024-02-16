@@ -1,4 +1,6 @@
+import java.io.FileInputStream;
 import java.sql.*;
+import java.io.*;
 import java.util.Scanner;
 
 public class Main {
@@ -13,14 +15,19 @@ public class Main {
             else{
                 System.out.println("Connection created....");
             }
-            String q = "insert into test_info values (?,?)";
-            PreparedStatement pstmt = con.prepareStatement(q);
-            Scanner sc = new Scanner(System.in);
-            int id = sc.nextInt();
-            String name = sc.next();
-            pstmt.setInt(id);
-            pstmt.setString(name);
-            pstmt.executeUpdate(q);
+            String pic = "insert into test_img(pic) values(?)";
+            PreparedStatement pstmt = con.prepareStatement(pic);
+            FileInputStream fis = new FileInputStream("\"C:\\Blog\\Blog 5\\dineyhotstar.jpg\"");
+            pstmt.setBinaryStream(1,fis,fis.available());
+//            String q = "insert into test_info(name) values (?)";
+//            PreparedStatement pstmt = con.prepareStatement(q);
+//            Scanner sc = new Scanner(System.in);
+//            int id = sc.nextInt();
+//            String name = sc.next();
+//            pstmt.setInt(id);
+//            pstmt.setString(4,name);
+            pstmt.executeUpdate();
+            System.out.println("Done...");
             con.close();
         } catch (Exception e) {
             //throw new RuntimeException(e);
