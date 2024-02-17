@@ -1,39 +1,33 @@
-import java.io.FileInputStream;
-import java.sql.*;
-import java.io.*;
+import java.io.IOException;
 import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/football","root", "admin");
-            //System.out.println(con);
-            if(con.isClosed()){
-                System.out.println("Connection is closed");
-            }
-            else{
-                System.out.println("Connection created....");
-            }
-            String pic = "insert into test_img(pic) values(?)";
-            PreparedStatement pstmt = con.prepareStatement(pic);
-            FileInputStream fis = new FileInputStream("\"C:\\Blog\\Blog 5\\dineyhotstar.jpg\"");
-            pstmt.setBinaryStream(1,fis,fis.available());
-//            String q = "insert into test_info(name) values (?)";
-//            PreparedStatement pstmt = con.prepareStatement(q);
-//            Scanner sc = new Scanner(System.in);
-//            int id = sc.nextInt();
-//            String name = sc.next();
-//            pstmt.setInt(id);
-//            pstmt.setString(4,name);
-            pstmt.executeUpdate();
-            System.out.println("Done...");
-            con.close();
-        } catch (Exception e) {
-            //throw new RuntimeException(e);
-            System.out.println(e);
+public class Main{
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What do you want to do?");
+        System.out.println("1. Add player");
+        System.out.println("2. Remove Player");
+        System.out.println("3. View Player");
+        int choice = sc.nextInt();
+        switch (choice) {
+            case (1):
+                Controller.addPlayer();
+                break;
+            case (2):
+                System.out.println("Remove by:");
+                System.out.println("1. ID");
+                System.out.println("2. Name");
+                int removeChoice = sc.nextInt();
+                switch(removeChoice){
+                    case 1:
+                        Controller.removePlayerByID();
+                        break;
+                    case 2:
+                        Controller.removePlayerByName();
+                        break;
+                }
+                break;
+            case (3):
+//                obj.viewPlayer();
         }
-
-
     }
 }
