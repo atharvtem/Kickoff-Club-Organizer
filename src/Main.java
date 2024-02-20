@@ -60,11 +60,37 @@ public class Main{
                                 Controller.removeClubByName();
                                 break;
                         }
-                        break;
                     case (3):
                         Controller.viewClub();
                         break;
+                }
+            case 3:
+                System.out.println("What do you want to do?");
+                System.out.println("1. Add Coach");
+                System.out.println("2. Remove Coach");
+                System.out.println("3. View Coach");
+                choice = sc.nextInt();
+                switch (choice) {
+                    case (1):
+                        Controller.addCoach();
+                        break;
+                    case (2):
+                        System.out.println("Remove by:");
+                        System.out.println("1. ID");
+                        System.out.println("2. Name");
+                        int removeChoice = sc.nextInt();
+                        switch (removeChoice) {
+                            case 1:
+                                Controller.removeCoachByID();
+                                break;
+                            case 2:
+                                Controller.removeCoachByName();
+                                break;
+                        }
+                    case (3):
+                        Controller.viewCoach();
+                        break;
+                }
             }
         }
-    }
 }

@@ -5,12 +5,31 @@ import java.util.Scanner;
 public class Controller {
     static Scanner sc = new Scanner(System.in);
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    public static void viewPlayer() throws IOException {
-        System.out.println("Enter Name:");
+    public static void viewCoach() throws IOException {
+        System.out.println("Enter Short Name:");
         String name = br.readLine();
-        System.out.println("Enter age:");
-        int age = sc.nextInt();
-        player.viewPlayer(name,age);
+        coach.viewCoach(name);
+    }
+    public static void addCoach()throws IOException{
+        System.out.println("Enter Short Name:");
+        String name = br.readLine();
+        System.out.println("Enter Long Name:");
+        String longname = br.readLine();
+        System.out.println("Enter nationality");
+        String natioanlity = br.readLine();
+        System.out.println("Enter Photo URL:");
+        String url = br.readLine();
+        coach.addCoach(name,longname,natioanlity,url);
+    }
+    public static void removeCoachByName() throws IOException {
+        System.out.println("Enter short Name:");
+        String name = br.readLine();
+        coach.removeCoachByName(name);
+    }
+    public static void removeCoachByID(){
+        System.out.println("Enter coach ID:");
+        int ID = sc.nextInt();
+        coach.removeCoachByID(ID);
     }
     public static void viewClub() throws IOException {
         System.out.println("Enter Name:");
@@ -41,6 +60,13 @@ public class Controller {
         System.out.println("Enter club ID:");
         int ID = sc.nextInt();
         club.removeClubByID(ID);
+    }
+    public static void viewPlayer() throws IOException {
+        System.out.println("Enter Name:");
+        String name = br.readLine();
+        System.out.println("Enter age:");
+        int age = sc.nextInt();
+        player.viewPlayer(name,age);
     }
     public static void removePlayerByName() throws IOException {
         System.out.println("Enter Name:");

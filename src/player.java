@@ -5,24 +5,26 @@ public class player {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/football","root", "admin");
-            String q = ("select * from player");
-            Statement stmt = con.createStatement();
-            ResultSet set = stmt.executeQuery(q);
+            PreparedStatement statement = con.prepareStatement("select * from football.player where Name = ? and Age = ?");
+            statement.setString(1, name);
+            statement.setInt(2,age);
+            ResultSet set = statement.executeQuery();
             while (set.next()) {
-                int columnid = set.getInt(1);
-                String columnname = set.getString(2);
-                int columnage = set.getInt(3);
-                String columnnationality = set.getString(4);
-                int columnoverall = set.getInt(5);
-                String columnclub = set.getString(6);
-                String columnvalue = set.getString(7);
-                String columnfoot = set.getString(8);
-                int columnweakfoot = set.getInt(9);
-                int columnskill = set.getInt(10);
-                String columnworkrate = set.getString(11);
-                String columnHeight = set.getString(12);
-                String columnWeight = set.getString(13);
-                int columnkitnum = set.getInt(14);
+                int columnid = set.getInt("ID");
+                String columnname = set.getString("Name");
+                int columnage = set.getInt("Age");
+                String columnnationality = set.getString("Nationality");
+                int columnoverall = set.getInt("Overall");
+                String columnclub = set.getString("Club");
+                String columnvalue = set.getString("Value");
+                String columnfoot = set.getString("PreferredFoot");
+                int columnweakfoot = set.getInt("WeakFoot");
+                int columnskill = set.getInt("SkillMoves");
+                String columnworkrate = set.getString("WorkRate");
+                String columnHeight = set.getString("Height");
+                String columnWeight = set.getString("Weight");
+                int columnkitnum = set.getInt("KitNumber");
+                System.out.println();
                 System.out.println("ID: " + columnid);
                 System.out.println("Name: " + columnname);
                 System.out.println("Age: " + columnage);
@@ -37,20 +39,12 @@ public class player {
                 System.out.println("Height: " + columnHeight);
                 System.out.println("Weight: " + columnWeight);
                 System.out.println("Kit Number: " + columnkitnum);
+                System.out.println();
             }
             con.close();
         }catch(Exception e){
-//            e.printStackTrace();
-            System.out.println(e);
-        }
-    }
-    protected static void viewPLayer(){
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/football","root", "admin");
-//            DBTablePrinter.printTable(con, "employees");
-        } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
+//            System.out.println(e);
         }
     }
     protected static void addPlayer(String name, int age, String photo, String nationality, int overall, String club, String value, String preferredFoot, int weakFoot, int skillMoves, String workRate, String height, String weight, int kitNumber){
