@@ -5,13 +5,18 @@ import java.util.Scanner;
 public class Controller {
     static Scanner sc = new Scanner(System.in);
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//    public void viewPlayer() throws IOException {
-//        System.out.println("Enter Name:");
-//        String name = br.readLine();
-//        System.out.println("Enter age:");
-//        int age = sc.nextInt();
-//        player.viewPlayer(name,age);
-//    }
+    public static void viewPlayer() throws IOException {
+        System.out.println("Enter Name:");
+        String name = br.readLine();
+        System.out.println("Enter age:");
+        int age = sc.nextInt();
+        player.viewPlayer(name,age);
+    }
+    public static void viewClub() throws IOException {
+        System.out.println("Enter Name:");
+        String name = br.readLine();
+        club.viewClub(name);
+    }
     public static void addClub()throws IOException{
         System.out.println("Enter Club Name:");
         String name = br.readLine();

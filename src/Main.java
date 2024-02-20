@@ -34,7 +34,8 @@ public class Main{
                         }
                         break;
                     case (3):
-                        //                obj.viewPlayer();
+                        Controller.viewPlayer();
+                        break;
                 }
             case 2:
                 System.out.println("What do you want to do?");
@@ -61,7 +62,8 @@ public class Main{
                         }
                         break;
                     case (3):
-                        Controller.removeClubByName();
+                        Controller.viewClub();
+                        break;
             }
         }
     }

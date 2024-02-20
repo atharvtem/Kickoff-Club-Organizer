@@ -1,8 +1,37 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.math.BigInteger;
+import java.sql.*;
 
 public class club {
+    protected static void viewClub(String name){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/football","root", "admin");
+            PreparedStatement statement = con.prepareStatement("select * from football.club where team_name = ?");
+            statement.setString(1, name);
+            ResultSet set = statement.executeQuery();
+            while (set.next()) {
+                int columnid = set.getInt(1);
+                String columnname = set.getString(2);
+                String columnleague = set.getString(3);
+                String columnnationality = set.getString(4);
+                int columnoverall = set.getInt(5);
+                String columnhome = set.getString(6);
+                int columnvalue = set.getInt(7);
+                System.out.println("ID: " + columnid);
+                System.out.println("Name: " + columnname);
+                System.out.println("League: " + columnleague);
+                System.out.println("Nationality: "+columnnationality);
+                System.out.println("Overall: " + columnoverall);
+                System.out.println("Home Ground: " + columnhome);
+                System.out.println("Value:" + columnvalue);
+                System.out.println();
+            }
+            con.close();
+        }catch(Exception e){
+//            e.printStackTrace();
+            System.out.println(e);
+        }
+    }
     protected static void addClub(String team_name,String league_name, String nationality_name, int overall, String home_stadium, String club_worth){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");

@@ -1,33 +1,58 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
 
 public class player {
-//    protected static void viewPlayer(String name, int age){
-//        try(PreparedStatement preparedStatement = con.prepareStatement(selectQuery)){
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/football","root", "admin");
-//            String q = "select * from player where Name=? and age=?";
-////            PreparedStatement pstmt = con.prepareStatement(q);
-//            PreparedStatement preparedStatement = null;
-//            ResultSet resultSet = preparedStatement.executeQuery(q);
-////            pstmt.setString(1,name);
-////            pstmt.setInt(2,age);
-//            while (resultSet.next()) {
-//                // Retrieve data from the result set
-//                int id = resultSet.getInt("id");
-//                String columnName1 = resultSet.getString("column1");
-//                // Retrieve other columns as needed
-//
-//                // Process or print the retrieved data
-//                System.out.println("ID: " + id + ", Column1: " + columnName1);
-//            }
-////            System.out.println("Player Removed...");
-//            con.close();
-//        }catch(Exception e){
+    protected static void viewPlayer(String name, int age){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/football","root", "admin");
+            String q = ("select * from player");
+            Statement stmt = con.createStatement();
+            ResultSet set = stmt.executeQuery(q);
+            while (set.next()) {
+                int columnid = set.getInt(1);
+                String columnname = set.getString(2);
+                int columnage = set.getInt(3);
+                String columnnationality = set.getString(4);
+                int columnoverall = set.getInt(5);
+                String columnclub = set.getString(6);
+                String columnvalue = set.getString(7);
+                String columnfoot = set.getString(8);
+                int columnweakfoot = set.getInt(9);
+                int columnskill = set.getInt(10);
+                String columnworkrate = set.getString(11);
+                String columnHeight = set.getString(12);
+                String columnWeight = set.getString(13);
+                int columnkitnum = set.getInt(14);
+                System.out.println("ID: " + columnid);
+                System.out.println("Name: " + columnname);
+                System.out.println("Age: " + columnage);
+                System.out.println("Nationality: "+columnnationality);
+                System.out.println("Overall: " + columnoverall);
+                System.out.println("Club: " + columnclub);
+                System.out.println("Value:" + columnvalue);
+                System.out.println("Strong Foot: " + columnfoot);
+                System.out.println("Weak Foot: " + columnweakfoot);
+                System.out.println("Skill: " + columnskill);
+                System.out.println("WorkRate: " + columnworkrate);
+                System.out.println("Height: " + columnHeight);
+                System.out.println("Weight: " + columnWeight);
+                System.out.println("Kit Number: " + columnkitnum);
+            }
+            con.close();
+        }catch(Exception e){
 //            e.printStackTrace();
-//        }
-//    }
+            System.out.println(e);
+        }
+    }
+    protected static void viewPLayer(){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/football","root", "admin");
+//            DBTablePrinter.printTable(con, "employees");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
     protected static void addPlayer(String name, int age, String photo, String nationality, int overall, String club, String value, String preferredFoot, int weakFoot, int skillMoves, String workRate, String height, String weight, int kitNumber){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
