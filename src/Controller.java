@@ -5,6 +5,21 @@ import java.util.Scanner;
 public class Controller {
     static Scanner sc = new Scanner(System.in);
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    protected static boolean login(){
+        System.out.println("Enter username:");
+        String username = sc.next();
+        System.out.println("Enter Password:");
+        String password = sc.next();
+        return users.verifylogin(username,password);
+    }
+
+    protected static void register(){
+        System.out.println("Create Username");
+        String username = sc.next();
+        System.out.println("Create Passowrd");
+        String password = sc.next();
+        users.registration(username,password);
+    }
     public static void viewCoach() throws IOException {
         System.out.println("Enter Short Name:");
         String name = br.readLine();
